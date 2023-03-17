@@ -6,12 +6,6 @@ import numpy as np
 from sklearn.model_selection import KFold
 from sklearn.linear_model import Ridge
 
-#training_set=pd.read_csv("train.csv")
-#training_data=training_set.iloc[:,1:]
-#training_labels=training_set.iloc[:,0]
-#lambdas=np.array([0.1,1,10,100,200], float)
-
-
 def fit(X, y, lam):
     
     #fit the data
@@ -23,12 +17,11 @@ def fit(X, y, lam):
     assert w.shape == (13,)
     return w
 
-#w=fit(training_data,training_labels,lambdas[0])
 
 def calculate_RMSE(w, X, y):
     
     predicted_labels=np.matmul(X,w)
-    RMSE=np.sum((y-predicted_labels)**2)/y.shape[0]
+    RMSE=np.sqrt(np.sum((y-predicted_labels)**2)/y.shape[0])
 
     assert np.isscalar(RMSE)
     return RMSE
